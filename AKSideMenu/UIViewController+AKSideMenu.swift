@@ -10,9 +10,9 @@ import UIKit
 
 // MARK: - UIViewController+AKSideMenu
 
-extension UIViewController {
+public extension UIViewController {
     
-    var sideMenuViewController: AKSideMenu? {
+    public var sideMenuViewController: AKSideMenu? {
         get {
             var iter : UIViewController = self.parentViewController!
             while (iter != nibName) {

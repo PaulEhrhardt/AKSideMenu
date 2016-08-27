@@ -8,7 +8,7 @@
 
 import UIKit
 
-@objc protocol AKSideMenuDelegate {
+@objc public protocol AKSideMenuDelegate {
     optional func sideMenu(sideMenu: AKSideMenu, didRecognizePanGesture recognizer: UIPanGestureRecognizer)
     optional func sideMenu(sideMenu: AKSideMenu, willShowMenuViewController menuViewController: UIViewController)
     optional func sideMenu(sideMenu: AKSideMenu, didShowMenuViewController menuViewController: UIViewController)
@@ -18,16 +18,16 @@ import UIKit
 
 @IBDesignable public class AKSideMenu : UIViewController, UIGestureRecognizerDelegate {
     
-    var visible: Bool = false
-    var leftMenuVisible: Bool = false
-    var rightMenuVisible: Bool = false
-    var didNotifyDelegate: Bool = false
-    var originalPoint: CGPoint = CGPointZero
-    var contentButton: UIButton = UIButton()
-    var backgroundImageView: UIImageView?
-    var menuViewContainer: UIView = UIView()
-    var contentViewContainer: UIView = UIView()
-    var delegate: AKSideMenuDelegate?
+    public var visible: Bool = false
+    public var leftMenuVisible: Bool = false
+    public var rightMenuVisible: Bool = false
+    public var didNotifyDelegate: Bool = false
+    public var originalPoint: CGPoint = CGPointZero
+    public var contentButton: UIButton = UIButton()
+    public var backgroundImageView: UIImageView?
+    public var menuViewContainer: UIView = UIView()
+    public var contentViewContainer: UIView = UIView()
+    public var delegate: AKSideMenuDelegate?
     
     @IBInspectable public let contentViewStoryboardID: String? = nil
     @IBInspectable public let leftMenuViewStoryboardID: String? = nil
