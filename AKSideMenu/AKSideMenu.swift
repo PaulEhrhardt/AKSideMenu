@@ -64,8 +64,8 @@ import UIKit
     public var panFromEdge: Bool = true
     public var panMinimumOpenThreshold: Float = 60.0
     public var menuPreferredStatusBarStyle: UIStatusBarStyle = UIStatusBarStyle.default
-    public var contentViewController: UIViewController?
-    
+    public var contentViewController: UIViewController?    
+
     private var _leftMenuViewController: UIViewController?
     private var _rightMenuViewController: UIViewController?
     
@@ -811,7 +811,7 @@ import UIKit
                 statusBarHidden = self.contentViewController!.prefersStatusBarHidden
             }
             return statusBarHidden
-        }
+        }  
     }
     
     override open var preferredStatusBarUpdateAnimation: UIStatusBarAnimation {
@@ -828,4 +828,5 @@ import UIKit
             return statusBarAnimation
         }
     }
+    
 }
