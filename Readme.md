@@ -4,6 +4,7 @@ AKSideMenu
 [![Build Status](https://travis-ci.org/dogo/AKSideMenu.svg?branch=master)](https://travis-ci.org/dogo/AKSideMenu)
 [![Cocoapods](http://img.shields.io/cocoapods/v/AKSideMenu.svg)](http://cocoapods.org/?q=AKSideMenu)
 [![Pod License](http://img.shields.io/cocoapods/l/AKSideMenu.svg)](https://github.com/dogo/AKSideMenu/blob/master/LICENSE)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 
 AKSideMenu is a double side menu library with parallax effect.
 
@@ -17,33 +18,42 @@ Build the examples from the `AKSideMenuExamples` directory.
 
 ## Installation
 
-AKSideMenu is available through [CocoaPods](http://cocoapods.org).
+### [CocoaPods](https://cocoapods.org/).
 
 To install, add the following line to your Podfile:
+```ruby
+pod 'AKSideMenu'
+```
+ 
+### [Carthage](https://github.com/Carthage/Carthage).
 
-    pod 'AKSideMenu'
+To install, add the following line to your  Cartfile: 
+ 
+```ruby
+github "dogo/AKSideMenu" "1.4.0"
+```
 
 ## Easy to use
 
-###Simple implementation
+### Simple implementation
 In your AppDelegate, add the code below.
 
 ```swift
-func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    self.window = UIWindow.init(frame: UIScreen.mainScreen().bounds)
-    
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    self.window = UIWindow.init(frame: UIScreen.main.bounds)
+
     // Create content and menu controllers
     let navigationController: UINavigationController = UINavigationController.init(rootViewController: FirstViewController.init())
     let leftMenuViewController: LeftMenuViewController = LeftMenuViewController.init()
     let rightMenuViewController: RightMenuViewController = RightMenuViewController.init()
 
     // Create side menu controller
-    let sideMenuViewController: AKSideMenu =  AKSideMenu.init(contentViewController: navigationController, leftMenuViewController: leftMenuViewController, rightMenuViewController: rightMenuViewController)
+    let sideMenuViewController: AKSideMenu = AKSideMenu(contentViewController: navigationController, leftMenuViewController: leftMenuViewController, rightMenuViewController: rightMenuViewController)
 
     // Make it a root controller
     self.window!.rootViewController = sideMenuViewController
 
-    self.window!.backgroundColor = UIColor.whiteColor()
+    self.window!.backgroundColor = UIColor.white
     self.window?.makeKeyAndVisible()
     return true
 }        
@@ -71,19 +81,35 @@ sideMenuViewController.delegate = self
 ...
 
 // MARK: - <AKSideMenuDelegate>
-func sideMenu(sideMenu: AKSideMenu, willShowMenuViewController menuViewController: UIViewController) {
+
+open func sideMenu(_ sideMenu: AKSideMenu, shouldRecognizeGesture recognizer: UIGestureRecognizer, simultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    // return true to allow both gesture recognizers to recognize simultaneously. Returns false by default
+    return false
+}
+
+open func sideMenu(_ sideMenu: AKSideMenu, gestureRecognizer: UIGestureRecognizer, shouldRequireFailureOf otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    // return true or false based on your failure requirements. Returns false by default
+    return false
+}
+
+open func sideMenu(_ sideMenu: AKSideMenu, gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+    // return true or false based on your failure requirements. Returns false by default
+    return false
+}
+
+open func sideMenu(_ sideMenu: AKSideMenu, willShowMenuViewController menuViewController: UIViewController) {
     print("willShowMenuViewController")
 }
 
-func sideMenu(sideMenu: AKSideMenu, didShowMenuViewController menuViewController: UIViewController) {
+open func sideMenu(_ sideMenu: AKSideMenu, didShowMenuViewController menuViewController: UIViewController) {
     print("didShowMenuViewController")
 }
 
-func sideMenu(sideMenu: AKSideMenu, willHideMenuViewController menuViewController: UIViewController) {
+open func sideMenu(_ sideMenu: AKSideMenu, willHideMenuViewController menuViewController: UIViewController) {
     print("willHideMenuViewController")
 }
 
-func sideMenu(sideMenu: AKSideMenu, didHideMenuViewController menuViewController: UIViewController) {
+open func sideMenu(_ sideMenu: AKSideMenu, didHideMenuViewController menuViewController: UIViewController) {
     print("didHideMenuViewController")
 }
 ```
@@ -107,9 +133,9 @@ self.sideMenuViewController!.setContentViewController(viewController, animated: 
 self.sideMenuViewController!.hideMenuViewController()
 ```
 
-###Properties
+### Properties
 ```swift
-public var animationDuration: NSTimeInterval
+public var animationDuration: TimeInterval
 ```
 The animation duration. Defaults to 0.35.
 ```swift
@@ -118,6 +144,10 @@ public var backgroundImage: UIImage
 The content background image. Defaults to white.
 ```swift
 public var panGestureEnabled: Bool
+```
+The content view corner radius. Defaults to 0.
+```swift
+public var contentViewCornerRadius: CGFloat
 ```
 Enables panGesture detection. Defaults to True.
 ```swift
@@ -203,7 +233,7 @@ TODO. Defaults to True.
 ```swift
 public var menuPreferredStatusBarStyle: UIStatusBarStyle
 ```
-Preferred UIStatusBarStyle when the menu is visible. Defaults to UIStatusBarStyle.Default.
+Preferred UIStatusBarStyle when the menu is visible. Defaults to UIStatusBarStyle.default.
 ```swift
 public var menuPrefersStatusBarHidden: Bool
 ```

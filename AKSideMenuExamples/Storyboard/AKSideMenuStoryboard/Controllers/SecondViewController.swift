@@ -8,24 +8,24 @@
 
 import UIKit
 
-public class SecondViewController : UIViewController {
-    
+public class SecondViewController: UIViewController {
+
     override public func viewDidLoad() {
         super.viewDidLoad()
     }
-    
-    func pushViewController(_ sender :AnyObject) {
-        let viewController = UIViewController.init()
+
+    func pushViewController(_ sender: AnyObject) {
+        let viewController = UIViewController()
         viewController.title = "Pushed Controller"
-        viewController.view.backgroundColor = UIColor.white
+        viewController.view.backgroundColor = .white
         self.navigationController?.pushViewController(viewController, animated: true)
     }
-    
+
     public override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NSLog("SecondViewController will appear")
     }
-    
+
     public override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NSLog("SecondViewController will disappear")
