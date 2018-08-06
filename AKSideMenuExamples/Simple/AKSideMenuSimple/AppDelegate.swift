@@ -15,26 +15,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AKSideMenuDelegate {
     var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        self.window = UIWindow.init(frame: UIScreen.main.bounds)
-        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+
         // Create content and menu controllers
-        let navigationController: UINavigationController = UINavigationController.init(rootViewController: FirstViewController.init())
-        let leftMenuViewController: LeftMenuViewController = LeftMenuViewController.init()
-        let rightMenuViewController: RightMenuViewController = RightMenuViewController.init()
-        
+        let navigationController = UINavigationController(rootViewController: FirstViewController())
+        let leftMenuViewController = LeftMenuViewController()
+        let rightMenuViewController = RightMenuViewController()
+
         // Create side menu controller
-        let sideMenuViewController: AKSideMenu =  AKSideMenu.init(contentViewController: navigationController, leftMenuViewController: leftMenuViewController, rightMenuViewController: rightMenuViewController)
-        sideMenuViewController.backgroundImage = UIImage.init(named: "Stars")!
-        sideMenuViewController.menuPreferredStatusBarStyle = UIStatusBarStyle.lightContent
+        let sideMenuViewController: AKSideMenu = AKSideMenu(contentViewController: navigationController, leftMenuViewController: leftMenuViewController, rightMenuViewController: rightMenuViewController)
+
+        sideMenuViewController.backgroundImage = UIImage(named: "Stars")!
+        sideMenuViewController.menuPreferredStatusBarStyle = .lightContent
         sideMenuViewController.delegate = self
-        sideMenuViewController.contentViewShadowColor = UIColor.black
+        sideMenuViewController.contentViewShadowColor = .black
         sideMenuViewController.contentViewShadowOffset = CGSize(width: 0, height: 0)
         sideMenuViewController.contentViewShadowOpacity = 0.6
         sideMenuViewController.contentViewShadowRadius = 12
         sideMenuViewController.contentViewShadowEnabled = true
         self.window!.rootViewController = sideMenuViewController
-        
-        self.window!.backgroundColor = UIColor.white
+
+        self.window!.backgroundColor = .white
         self.window?.makeKeyAndVisible()
         return true
     }
@@ -62,21 +63,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AKSideMenuDelegate {
     }
 
     // MARK: - <AKSideMenuDelegate>
-    
+
     open func sideMenu(_ sideMenu: AKSideMenu, willShowMenuViewController menuViewController: UIViewController) {
         print("willShowMenuViewController")
     }
-    
+
     open func sideMenu(_ sideMenu: AKSideMenu, didShowMenuViewController menuViewController: UIViewController) {
         print("didShowMenuViewController")
     }
-    
+
     open func sideMenu(_ sideMenu: AKSideMenu, willHideMenuViewController menuViewController: UIViewController) {
         print("willHideMenuViewController")
     }
-    
+
     open func sideMenu(_ sideMenu: AKSideMenu, didHideMenuViewController menuViewController: UIViewController) {
         print("didHideMenuViewController")
     }
 }
-
