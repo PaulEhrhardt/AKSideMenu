@@ -2,7 +2,7 @@ Pod::Spec.new do |spec|
   spec.name         = "AKSideMenu"
   spec.version      = "1.4.1"
   spec.summary      = "Beautiful iOS side menu library with parallax effect. Written in Swift"
-  spec.homepage     = "https://github.com/dogo/AKSideMenu"
+  spec.homepage     = "https://github.com/PaulEhrhardt/AKSideMenu"
 
   spec.license            		= { :type => "MIT", :file => "LICENSE" }
   spec.author             		= { "Diogo Autilio" => "diautilio@gmail.com" }
@@ -10,7 +10,7 @@ Pod::Spec.new do |spec|
   spec.platform           		= :ios
   spec.frameworks               = "UIKit", "Foundation", "CoreGraphics", "QuartzCore"
   spec.ios.deployment_target	= "8.0"
-  spec.source             		= { :git => "https://github.com/dogo/AKSideMenu.git", :tag => spec.version.to_s }
+  spec.source             		= { :git => "https://github.com/PaulEhrhardt/AKSideMenu.git", :tag => spec.version.to_s }
   spec.source_files       		= "AKSideMenu/*.{swift}"
   spec.requires_arc       		= true
 end
